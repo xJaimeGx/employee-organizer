@@ -1,0 +1,29 @@
+{
+  "name": "employee-organizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xJaimeGx/employee-organizer.git"
+  },
+  "keywords": [
+    "employee",
+    "organizer",
+    "tracker"
+  ],
+  "author": "Jaime G",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xJaimeGx/employee-organizer/issues"
+  },
+  "homepage": "https://github.com/xJaimeGx/employee-organizer#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.2",
+    "mysql2": "^2.3.3"
+  }
+}
