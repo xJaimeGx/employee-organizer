@@ -1,0 +1,11 @@
+DROP DATABASE IF EXISTS employee_DB;
+
+CREATE DATABASE employee_DB;
+
+USE employee_DB;
+
+CREATE TABLE employees (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL(20, 2) NULL
+);
