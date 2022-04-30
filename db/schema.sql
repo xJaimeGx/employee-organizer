@@ -9,3 +9,15 @@ CREATE TABLE employees (
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(20, 2) NULL
 );
+
+CREATE TABLE departments (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE roles (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL(20, 2) NULL,
+    department_id INT NOT NULL
+);
