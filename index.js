@@ -92,7 +92,7 @@ const viewEmployee = async () => {
             let employeeArray = [];
             res.forEach(employee => employeeArray.push(employee));
             console.table(employeeArray);
-            initialAction();
+            startApp();
         });
     } catch (err) {
         console.log(err);
@@ -136,3 +136,59 @@ const viewRole = async () => {
     };
 };
 
+// Add a new employee
+const addEmployee = async () => {
+    try {
+        console.log('Employees');
+        let roles = await connection.query("SELECT * FROM roles");
+        let managers = await connection.query("SELECT * FROM employees");
+        let answer = await inquirer.prompt([
+            {
+                name: 'firstName',
+                type: 'input',
+                message: 'What is the new employees first name?'
+            },
+            {
+                name: 'lastName',
+                type: 'input',
+                message: 'What is the new employees last name?'
+            },
+            {
+                name: 'employeeRoleId',
+                type: 'list',
+                choices: roles.map((role) => {
+                    return {
+                        name: role.title,
+                        value: role.id
+                    }
+                }),
+                message: "What is the ID oof the new employee?"
+            },
+            {
+                name: 'employeeManagerId',
+                type: 'list',
+                choices: managers.map((manager) => {
+                    return {
+                        name: manager.first_name + " " + manager.last_name,
+                        value: manager.id
+                    }
+                }),
+                message: "What is the new employees manager ID?"
+            }
+        ])
+
+        let result = await connection.query("INSERT INTO employees SET ?", {
+            first_name: answer.firstName,
+            last_name: answer.lastName,
+            role_id: (answer.employeeRoleId),
+            manager_id: (answer.employeeManagerId)
+        });
+
+        console.log(`${answer.firstName} ${answer.lastName} has been added.\n`);
+        startApp();
+
+    } catch (err) {
+        console.log(err);
+        startApp();
+    };
+};
